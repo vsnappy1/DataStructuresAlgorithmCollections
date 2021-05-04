@@ -1,14 +1,97 @@
 package com.company;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.PriorityQueue;
 
 public class Main {
+
+    static class Student {
+        int mId;
+        int mAge;
+        String mClass;
+
+        public Student(int mId, int mAge, String mClass) {
+            this.mId = mId;
+            this.mAge = mAge;
+            this.mClass = mClass;
+        }
+
+        @Override
+        public int hashCode() {
+            return mClass.hashCode() & Integer.valueOf(mId).hashCode() & Integer.valueOf(mAge).hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            Student student = (Student) obj;
+            return student.mId == this.mId && student.mAge == this.mAge && student.mClass.equals(this.mClass);
+        }
+
+        @Override
+        public String toString() {
+            return "Id: " + mId + " Age: " + mAge + " Class: " + mClass;
+        }
+    }
 
 
     public static void main(String[] args) {
 
 
+//        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+//        priorityQueue.add(8);
+//        priorityQueue.add(2);
+//        priorityQueue.add(10);
+//        priorityQueue.add(1);
+//        priorityQueue.add(8);
+//        priorityQueue.add(8);
+//        priorityQueue.add(8);
+//
+//
+//        Iterator iterator = priorityQueue.iterator();
+//       while (iterator.hasNext()){
+//           print(iterator.next());
+//       }
 
+
+        CustomBinaryTree tree = new CustomBinaryTree();
+        tree.add(8);
+        tree.add(1);
+        tree.add(2);
+        tree.add(3);
+        tree.add(4);
+        tree.add(5);
+        tree.add(6);
+        tree.add(7);
+
+//        tree.DFS(10);
+        tree.BFS(10);
+
+//        CustomHashSet<Integer> customHashSet = new CustomHashSet<>();
+//        customHashSet.add(8);
+//        customHashSet.add(1);
+//        customHashSet.add(6);
+//        customHashSet.add(8);
+//
+//        customHashSet.printSet();
+//        print(customHashSet.remove(1));
+//        print(customHashSet.isEmpty());
+//        print(customHashSet.getSize());
+
+//        CustomHashSet<Student> set = new CustomHashSet<>();
+//        print(set.add(new Student(5, 15, "three")));
+//        print(set.add(new Student(1, 15, "three")));
+//        print(set.add(new Student(2, 15, "three")));
+//        print(set.add(new Student(4, 15, "three")));
+//        print(set.add(new Student(3, 15, "three")));
+//
+//        print(set.remove(new Student(1, 15, "three")));
+//        set.printSet();
+//
+//        print(set.isEmpty());
+//        print(set.getSize());
+
+//        print(set.remove(new Student(1,15,"three")));
 
 
 //        CustomHashMap<String, Integer> hashMap = new CustomHashMap<>();
@@ -196,5 +279,9 @@ public class Main {
 //        System.out.println(fibonacciNumber(50));
     }
 
+
+    static void print(Object o) {
+        System.out.println(o);
+    }
 
 }

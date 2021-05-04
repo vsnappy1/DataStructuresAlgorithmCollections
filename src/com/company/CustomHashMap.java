@@ -1,6 +1,5 @@
 package com.company;
 
-import java.lang.reflect.Array;
 
 public class CustomHashMap<K, V> {
 
@@ -83,7 +82,7 @@ public class CustomHashMap<K, V> {
     }
 
 
-    private int hash(Object key) {
+    private int hash(K key) {
         return (key == null) ? 0 : key.hashCode();
     }
 

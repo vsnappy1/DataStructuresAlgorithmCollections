@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class CustomBinaryTree {
     Node root;
@@ -100,6 +101,71 @@ public class CustomBinaryTree {
                 queue.add(temp.right);
             }
         }
+    }
+
+    public boolean DFS(int data){
+
+        Stack<Node> stack = new Stack<>();
+        stack.add(root);
+
+        Node currentNode = root;
+
+        while (!stack.isEmpty()){
+
+            if(currentNode.data == data){
+                return true;
+            }
+
+            if(currentNode.right != null && !currentNode.right.isVisited){
+                stack.add(currentNode.right);
+            }
+
+            if(currentNode.left != null && !currentNode.left.isVisited){
+                stack.add(currentNode.left);
+            }
+
+            System.out.print(currentNode.data+", ");
+            currentNode.isVisited = true;
+            currentNode = stack.pop();
+        }
+
+        return false;
+
+    }
+
+    public boolean BFS(int data){
+
+        Stack<Node> stack = new Stack<>();
+        stack.add(root);
+        return BFS(data, stack);
+    }
+
+    public boolean BFS(int data, Stack<Node> stack){
+
+        if(stack.isEmpty()){
+            return false;
+        }
+
+        Node currentNode = stack.pop();
+
+        if(currentNode.data == data){
+            return true;
+        }
+
+        if(currentNode.left != null && !currentNode.left.isVisited){
+            System.out.print(currentNode.left.data+", ");
+            currentNode.left.isVisited = true;
+            stack.add(currentNode.left);
+        }
+
+        if (currentNode.right != null && !currentNode.right.isVisited){
+            System.out.print(currentNode.right.data+", ");
+            currentNode.right.isVisited = true;
+            stack.add(currentNode.right);
+        }
+
+        return BFS(data, stack);
+
 
     }
 
@@ -152,6 +218,7 @@ public class CustomBinaryTree {
         int data;
         Node left;
         Node right;
+        boolean isVisited = false;
 
         public Node(int data) {
             this.data = data;
